@@ -1,0 +1,630 @@
+## Mission & Output Standard
+
+Produce a **single-page landing site PRD in Markdown** (developer-ready) for **Halos Bio** (stealth mode) that also includes a **shadcn/Tailwind/TypeScript integration plan** and the steps to add a provided React visual component (`SparklesCore`). The PRD must be **unambiguous**, **build-ready**, and include **acceptance criteria**, **file paths**, **commands**, and **test checklists**.
+
+**Important constraints**
+
+* Halos Bio is in **stealth**; copy must be **minimal, compliant, and non-promissory**.
+* Core narrative: *“Redefining the biotech landscape by changing the artificial plasma space.”*
+* The output is a **Markdown PRD document** only (no actual code implementation).
+* Provide **copy blocks**, **IA**, **wireframe descriptions**, and **component specs**.
+* Include **clear setup steps** for shadcn, Tailwind, and TypeScript **if the codebase doesn’t already have them**.
+* Mandate a **components path of `/components/ui`** and explain **why** (design system consistency and import ergonomics).
+* Include the **exact component code** provided below in the PRD (as a code block) so builders can copy/paste into `/components/ui`.
+* Include an **NPM dependencies list** and **install commands**.
+* Integrate **lucide-react** for icons, and propose a minimal, tasteful icon set.
+
+---
+
+## Company & Creative Guardrails
+
+* **Brand**: Halos Bio (stealth). Keep tone **measured, scientific, and discreet**.
+* **Positioning**: Next-gen bio platform in R&D; **no clinical claims**, **no medical advice**.
+* **Voice**: concise, confident, ethically rigorous; avoid hype.
+* **Visual Direction**: dark, cinematic hero with subtle particle **sparkle** effect; minimal color accents; focus on **typography** and **negative space**.
+
+---
+
+## What to Deliver (Structure of Your PRD)
+
+Your Markdown PRD must include the following sections (with subsections as specified):
+
+1. **Executive Summary**
+
+   * Goal of the landing page (stealth capture + credibility).
+   * Primary conversion (email capture / “Sign Up to Join Unveiling”).
+   * Secondary conversion (investor/partner inquiry link).
+
+2. **Objectives & KPIs**
+
+   * KPIs: conversion %, bounce, TTI/LCP, a11y score, performance budgets.
+   * Define success for first 30/60/90 days.
+
+3. **Audience & JTBD**
+
+   * Profiles: Researchers, clinicians, strategic partners, investors, early hires.
+   * Top questions & content required to answer them without violating stealth.
+
+4. **Information Architecture (Single Page)**
+
+   * Sections (order & rationale):
+
+     1. **Hero** (headline + concise subhead + CTA + particle background)
+     2. **Stealth Signup** — email capture + interest tags
+     9. **Footer** — legal, privacy, terms, minimal nav
+
+5. **Copy Blueprint**
+
+   * Provide draft microcopy for each section (short, compliant).
+   * CTA variants: “Click to Join Waitlist”, “Get Research Updates”.
+   * Legal lines (no medical claims, research-use only, not a solicitation, etc.).
+
+6. **Wireframe Descriptions (Textual)**
+
+   * For **desktop**, **tablet**, **mobile** (breakpoints: `sm`, `md`, `lg`, `xl`).
+   * Spacing rhythm, hierarchy, and motion cues (subtle fade/scale on hero).
+
+7. **Design System / UI Kit (shadcn + Tailwind)**
+
+   * **Color tokens** (dark background, muted neutrals, single accent).
+   * **Typography** (e.g., display → headline → body scale).
+   * **Components to use from shadcn**: `button`, `input`, `card`, `badge`, `dialog`, `sheet`, `separator`.
+   * **Iconography**: `lucide-react` minimal set (e.g., `Sparkles`, `FlaskConical`, `ShieldCheck`).
+   * **Accessibility** targets (WCAG 2.1 AA), focus states, ARIA.
+
+8. **Sparkles Component Integration**
+
+   * Purpose: tasteful particle background in **Hero**.
+   * Placement: full-bleed container behind headline/CTA; ensure **masking** for edges (per provided demo).
+   * Performance constraints: particle density capped for mobile; lazy-init; `use client`.
+   * **Provide the exact code blocks** for:
+
+     * `/components/ui/sparkles.tsx`
+     * optional `/components/ui/demo.tsx`
+   * **NPM deps**: `framer-motion @tsparticles/slim @tsparticles/react @tsparticles/engine`.
+   * **Also install**: `lucide-react clsx tailwind-merge`.
+
+9. **Tech Stack & Project Setup (If Missing)**
+
+   * Assume **Next.js 14+ App Router** w/ **TypeScript**. If not present:
+
+     * Create Next app (TS), install Tailwind & shadcn, configure paths.
+   * **Default path for components and styles**:
+
+     * Components: `/components/ui` (required)
+     * Utilities: `/lib/utils.ts` (for `cn`)
+     * Global CSS: `/app/globals.css`
+   * **If your current project doesn’t use `/components/ui`**, include a rationale and migration notes:
+
+     * Centralizes the design system and enables consistent import paths (`@/components/ui/*`), improving discoverability, reuse, and theming.
+     * Aligns with shadcn conventions; many community components expect this layout.
+     * Reduces import churn and code review noise due to inconsistent paths.
+
+10. **Exact Commands & Config (If Setup Needed)**
+
+    * **Install**:
+
+      ```bash
+      # Core deps for the sparkles + motion
+      npm i framer-motion @tsparticles/slim @tsparticles/react @tsparticles/engine
+
+      # UI + utils
+      npm i lucide-react clsx tailwind-merge
+      ```
+    * **If Tailwind not installed**:
+
+      ```bash
+      npm i -D tailwindcss postcss autoprefixer
+      npx tailwindcss init -p
+      # Update tailwind.config.{js,ts} content to include:
+      #  ./app/**/*.{ts,tsx}, ./components/**/*.{ts,tsx}, ./styles/**/*.{ts,tsx}, ./lib/**/*.{ts,tsx}
+      ```
+    * **If shadcn not initialized**:
+
+      ```bash
+      npx shadcn@latest init
+      # When prompted, set components path to: components
+      # (We will nest UI components at /components/ui)
+      npx shadcn@latest add button input card badge separator sheet dialog
+      ```
+    * **Ensure utils exists** (`/lib/utils.ts`):
+
+      ```ts
+      // /lib/utils.ts
+      import { type ClassValue } from "clsx";
+      import { clsx } from "clsx";
+      import { twMerge } from "tailwind-merge";
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+    * **tsconfig path alias** (so `@/` works):
+
+      ```json
+      // tsconfig.json
+      {
+        "compilerOptions": {
+          "baseUrl": ".",
+          "paths": { "@/*": ["./*"] }
+        }
+      }
+      ```
+
+11. **File Tree to Generate (in the Implementation)**
+
+    ```
+    /app
+      /favicon.ico
+      /robots.txt
+      /sitemap.xml
+      /layout.tsx
+      /page.tsx            # Halos Bio landing
+      /globals.css
+    /components
+      /ui
+        sparkles.tsx       # provided code
+        demo.tsx           # optional showcase
+        button.tsx         # shadcn (added via CLI)
+        input.tsx          # shadcn
+        card.tsx           # shadcn
+    /lib
+      utils.ts             # cn()
+    /public
+      og-image.png         # Open Graph image (placeholder)
+      logo.svg             # simple placeholder or wordmark
+    ```
+
+12. **Hero Composition Spec**
+
+    * Background: `SparklesCore` (transparent bg), masked edges to avoid hard borders.
+    * Headline: “Halos Bio” → subhead: *“Redefining artificial human serum”*
+    * Primary CTA: `Click to Join Waitlist` (opens **Dialog** with email input)
+    * Secondary CTA: `Investor / Partner Inquiry` (mailto or simple form)
+    * Motion: fade-in headline/CTA; particles opacity animate on load.
+    * A11y: semantic `h1`, `aria-label`s on CTAs, sufficient contrast.
+
+13. **Email Capture Spec**
+
+    * Simple form (name+email), double opt-in flag in copy, privacy link.
+    * Tag checkboxes (Research / Clinical / Investor / Talent).
+    * No storage solution specified; include a note to wire later (e.g., POST to `/api/lead` or external provider).
+    * Validation: required email, error states, success toast.
+
+14. **Content & Compliance**
+
+    * Required disclaimers:
+
+      * “For research use only. Not for diagnostic or therapeutic use.”
+      * “Information is exploratory and subject to change.”
+    * No efficacy or availability claims; avoid clinical terminology implying approval.
+    * Include privacy, terms (stub pages or modal).
+
+15. **SEO & Social**
+
+    * Title, meta description, canonical, **Open Graph** & **Twitter** tags.
+    * Sitemap/robots minimal setup.
+    * OG image placeholder (dark gradient + subtle particles + wordmark).
+
+16. **Performance Budgets**
+
+    * LCP < 2.5s on mid-tier mobile.
+    * JS < 200KB initial (post-gzip) for landing route; lazy load anything non-critical.
+    * Particle density adjusts on viewport; cap FPS on low power.
+
+17. **Accessibility**
+
+    * WCAG 2.1 AA: color contrast, focus visible, keyboard nav, ARIA on dialogs.
+    * Reduce motion respect (`prefers-reduced-motion`) for particles/animations.
+
+18. **Analytics & Consent**
+
+    * Stub for privacy-friendly analytics (e.g., Plausible) with env flag.
+    * Basic cookie/privacy notice (non-intrusive banner if needed).
+
+19. **Testing Plan**
+
+    * Visual & functional test cases (hero renders, form validates, dialog opens).
+    * Accessibility checks (tab order, labels).
+    * Performance validation on mobile throttling.
+
+20. **Deployment Notes**
+
+    * Vercel recommended; env var stubs for analytics and form endpoint.
+    * Build command, output directory defaults (Next.js).
+
+21. **Acceptance Criteria (DoD)**
+
+    * Page matches IA, copy, and a11y rules; sparkles render behind hero text; all imports resolve with **`@/components/ui`** and **`@/lib/utils`**; build passes; performance & a11y thresholds met; disclaimers present.
+
+22. **Risks & Mitigations**
+
+    * Particle perf on low-end devices → reduce density, FPS cap.
+    * Overstating claims → compliance review checklist included.
+
+23. **Open Questions**
+
+    * Preferred email service provider?
+    * Any approved advisor logos?
+    * Exact brand color tokens (provide suggested defaults if unknown).
+
+---
+
+## Required Code to Include in the PRD (for builders to copy)
+
+Place these inside **code blocks** in your PRD so they can be copy-pasted verbatim.
+
+### `/components/ui/sparkles.tsx`
+
+```tsx
+"use client";
+import React, { useId, useMemo } from "react";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { Container, SingleOrMultiple } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import { cn } from "@/lib/utils";
+import { motion, useAnimation } from "framer-motion";
+
+type ParticlesProps = {
+  id?: string;
+  className?: string;
+  background?: string;
+  particleSize?: number;
+  minSize?: number;
+  maxSize?: number;
+  speed?: number;
+  particleColor?: string;
+  particleDensity?: number;
+};
+export const SparklesCore = (props: ParticlesProps) => {
+  const {
+    id,
+    className,
+    background,
+    minSize,
+    maxSize,
+    speed,
+    particleColor,
+    particleDensity,
+  } = props;
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+  const controls = useAnimation();
+
+  const particlesLoaded = async (container?: Container) => {
+    if (container) {
+      controls.start({
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+  };
+
+  const generatedId = useId();
+  return (
+    <motion.div animate={controls} className={cn("opacity-0", className)}>
+      {init && (
+        <Particles
+          id={id || generatedId}
+          className={cn("h-full w-full")}
+          particlesLoaded={particlesLoaded}
+          options={{
+            background: {
+              color: {
+                value: background || "#0d47a1",
+              },
+            },
+            fullScreen: {
+              enable: false,
+              zIndex: 1,
+            },
+
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: false,
+                  mode: "repulse",
+                },
+                resize: true as any,
+              },
+              modes: {
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              bounce: {
+                horizontal: {
+                  value: 1,
+                },
+                vertical: {
+                  value: 1,
+                },
+              },
+              collisions: {
+                absorb: {
+                  speed: 2,
+                },
+                bounce: {
+                  horizontal: {
+                    value: 1,
+                  },
+                  vertical: {
+                    value: 1,
+                  },
+                },
+                enable: false,
+                maxSpeed: 50,
+                mode: "bounce",
+                overlap: {
+                  enable: true,
+                  retries: 0,
+                },
+              },
+              color: {
+                value: particleColor || "#ffffff",
+                animation: {
+                  h: { count: 0, enable: false, speed: 1, decay: 0, delay: 0, sync: true, offset: 0 },
+                  s: { count: 0, enable: false, speed: 1, decay: 0, delay: 0, sync: true, offset: 0 },
+                  l: { count: 0, enable: false, speed: 1, decay: 0, delay: 0, sync: true, offset: 0 },
+                },
+              },
+              effect: {
+                close: true,
+                fill: true,
+                options: {},
+                type: {} as SingleOrMultiple<string> | undefined,
+              },
+              groups: {},
+              move: {
+                angle: { offset: 0, value: 90 },
+                attract: { distance: 200, enable: false, rotate: { x: 3000, y: 3000 } },
+                center: { x: 50, y: 50, mode: "percent", radius: 0 },
+                decay: 0,
+                distance: {},
+                direction: "none",
+                drift: 0,
+                enable: true,
+                gravity: { acceleration: 9.81, enable: false, inverse: false, maxSpeed: 50 },
+                path: { clamp: true, delay: { value: 0 }, enable: false, options: {} },
+                outModes: { default: "out" },
+                random: false,
+                size: false,
+                speed: { min: 0.1, max: 1 },
+                spin: { acceleration: 0, enable: false },
+                straight: false,
+                trail: { enable: false, length: 10, fill: {} },
+                vibrate: false,
+                warp: false,
+              },
+              number: {
+                density: { enable: true, width: 400, height: 400 },
+                limit: { mode: "delete", value: 0 },
+                value: particleDensity || 120,
+              },
+              opacity: {
+                value: { min: 0.1, max: 1 },
+                animation: {
+                  count: 0,
+                  enable: true,
+                  speed: speed || 4,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                  mode: "auto",
+                  startValue: "random",
+                  destroy: "none",
+                },
+              },
+              reduceDuplicates: false,
+              shadow: {
+                blur: 0,
+                color: { value: "#000" },
+                enable: false,
+                offset: { x: 0, y: 0 },
+              },
+              shape: { close: true, fill: true, options: {}, type: "circle" },
+              size: {
+                value: { min: minSize || 1, max: maxSize || 3 },
+                animation: { count: 0, enable: false, speed: 5, decay: 0, delay: 0, sync: false, mode: "auto", startValue: "random", destroy: "none" },
+              },
+              stroke: { width: 0 },
+              zIndex: { value: 0, opacityRate: 1, sizeRate: 1, velocityRate: 1 },
+              destroy: {
+                bounds: {},
+                mode: "none",
+                split: {
+                  count: 1,
+                  factor: { value: 3 },
+                  rate: { value: { min: 4, max: 9 } },
+                  sizeOffset: true,
+                },
+              },
+              roll: { darken: { enable: false, value: 0 }, enable: false, enlighten: { enable: false, value: 0 }, mode: "vertical", speed: 25 },
+              tilt: { value: 0, animation: { enable: false, speed: 0, decay: 0, sync: false }, direction: "clockwise", enable: false },
+              twinkle: {
+                lines: { enable: false, frequency: 0.05, opacity: 1 },
+                particles: { enable: false, frequency: 0.05, opacity: 1 },
+              },
+              wobble: { distance: 5, enable: false, speed: { angle: 50, move: 10 } },
+              life: { count: 0, delay: { value: 0, sync: false }, duration: { value: 0, sync: false } },
+              rotate: { value: 0, animation: { enable: false, speed: 0, decay: 0, sync: false }, direction: "clockwise", path: false },
+              orbit: { animation: { count: 0, enable: false, speed: 1, decay: 0, delay: 0, sync: false }, enable: false, opacity: 1, rotation: { value: 45 }, width: 1 },
+              links: {
+                blink: false,
+                color: { value: "#fff" },
+                consent: false,
+                distance: 100,
+                enable: false,
+                frequency: 1,
+                opacity: 1,
+                shadow: { blur: 5, color: { value: "#000" }, enable: false },
+                triangles: { enable: false, frequency: 1 },
+                width: 1,
+                warp: false,
+              },
+              repulse: { value: 0, enabled: false, distance: 1, duration: 1, factor: 1, speed: 1 },
+            },
+            detectRetina: true,
+          }}
+        />
+      )}
+    </motion.div>
+  );
+};
+```
+
+### `/components/ui/demo.tsx` (optional)
+
+```tsx
+"use client";
+import React from "react";
+import { SparklesCore } from "@/components/ui/sparkles"
+
+export function SparklesPreview() {
+  return (
+    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
+        Acme
+      </h1>
+      <div className="w-[40rem] h-40 relative">
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+        <SparklesCore
+          background="transparent"
+          minSize={0.4}
+          maxSize={1}
+          particleDensity={1200}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
+        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+      </div>
+    </div>
+  );
+}
+
+export function SparklesPreviewDark() {
+  return (
+    <div className="h-[40rem] relative w-full bg-slate-950 flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+          speed={1}
+        />
+      </div>
+      <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
+        Build faster
+      </h1>
+    </div>
+  );
+}
+
+export function SparklesPreviewColorful() {
+  return (
+    <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticlescolorful"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#00ff00"
+          speed={0.5}
+        />
+      </div>
+      <div className="flex flex-col items-center justify-center gap-4 relative z-20">
+        <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+          Halos
+        </h1>
+        <p className="text-neutral-300 cursor-default text-center">
+          is coming
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Dependencies to List in the PRD
+
+* Runtime/UI: `framer-motion`, `@tsparticles/slim`, `@tsparticles/react`, `@tsparticles/engine`, `lucide-react`
+* Utils: `clsx`, `tailwind-merge`
+* (If needed) Dev: `tailwindcss`, `postcss`, `autoprefixer`
+
+**Install commands (include verbatim in PRD):**
+
+```bash
+npm i framer-motion @tsparticles/slim @tsparticles/react @tsparticles/engine lucide-react clsx tailwind-merge
+# if tailwind not yet installed:
+npm i -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
+```
+
+---
+
+## Implementation Guidelines (to include in PRD)
+
+1. **Analyze component structure**: external deps (`tsparticles`, `framer-motion`), `use client`, `cn` util.
+2. **Review props & state**: expose `minSize`, `maxSize`, `particleDensity`, `particleColor`, `speed`. Provide recommended defaults for each breakpoint.
+3. **Context/providers**: none required beyond standard React; ensure Next.js client component and `framer-motion` in the same route.
+4. **Questions to confirm** (list them explicitly):
+
+   * What props will be set for the hero background across devices?
+   * Any stateful feature flags for stealth (e.g., gating sections)?
+   * Any asset or logo constraints?
+   * Responsive thresholds for particle density?
+   * Where to place `SparklesCore` besides hero (if anywhere)?
+5. **Steps to integrate** (explicit checklist):
+   0) Copy/paste the code above into `/components/ui`.
+
+   1. Install external dependencies (commands provided).
+   2. Use placeholder **Unsplash** images for any visuals (non-essential; ensure alt text).
+   3. Use `lucide-react` for any small illustrative icons (no heavy SVG sets).
+   4. Ensure `/lib/utils.ts` exists for `cn()`; update `tsconfig` path alias to `@/*`.
+   5. Add hero section in `/app/page.tsx` with `SparklesCore` layered behind content.
+   6. Add email capture `Dialog` (shadcn) and simple form validation.
+   7. Add disclaimers and privacy/terms links.
+   8. Run a11y and performance checks; tune particle density if needed.
+
+---
+
+## Why `/components/ui` Matters (add this rationale in PRD)
+
+* Provides a **single, predictable namespace** for your design system.
+* Aligns with **shadcn** community conventions; many snippets assume it.
+* Simplifies imports (`@/components/ui/button`) and **reduces merge conflicts**.
+* Enables **scalable theming** and component audits across the app.
+
+---
+
+**End of 10× Expanded Prompt — Do not execute; generate the requested PRD following the structure above.**

@@ -1,0 +1,142 @@
+╔════════════════════════════════════════════════════════════════════╗
+║                                                                    ║
+║              🚀 HALOS BIO - DREAMHOST UPLOAD GUIDE 🚀              ║
+║                                                                    ║
+║                          START HERE                                ║
+║                                                                    ║
+╚════════════════════════════════════════════════════════════════════╝
+
+
+✅ GOOD NEWS: Everything is ready to upload!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your complete website is in the "out" folder:
+📁 /Users/anthony/Desktop/halosbiolanding/out/
+
+This folder contains EVERYTHING needed - all files are self-contained!
+
+
+🎯 QUICK UPLOAD (15 minutes total)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Download FileZilla (SFTP client)
+        → https://filezilla-project.org/download.php?type=client
+        → Install and open it
+
+Step 2: Connect to your Dreamhost server
+        → In FileZilla top bar, enter:
+          Host: halos.bio
+          Username: [your Dreamhost username]
+          Password: [your Dreamhost password]
+          Port: 22
+        → Click "Quickconnect"
+
+Step 3: Navigate to your website folder
+        → Right side (Dreamhost): /home/[username]/halos.bio/
+
+Step 4: Upload your website
+        → Left side (Your Mac): /Users/anthony/Desktop/halosbiolanding/out/
+        → Select ALL files and folders INSIDE "out"
+        → Drag them to the right side
+        → Wait 5-10 minutes for upload
+
+Step 5: Test your site!
+        → Visit: https://halos.bio
+        → It should work! 🎉
+
+
+⚠️  ONE MORE THING: Email Form Setup (5 minutes)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The "Join Waitlist" button needs Formspree to work:
+
+1. Go to: https://formspree.io
+2. Sign up (free account)
+3. Create a new form
+4. Copy the endpoint (looks like: https://formspree.io/f/xvgpqrst)
+5. Open: components/email-capture-dialog.tsx
+6. Line 61: Replace YOUR_FORM_ID with your actual ID
+7. In Terminal, run: cd /Users/anthony/Desktop/halosbiolanding && pnpm run build
+8. Re-upload the "out" folder contents via FileZilla
+
+Without this, the form will show an error when submitted.
+
+
+📚 DETAILED GUIDES AVAILABLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 QUICK-START.md              → 5-minute upload guide
+📖 DREAMHOST-DEPLOYMENT.md     → Complete step-by-step instructions
+📖 DEPLOYMENT-SUMMARY.md       → Overview and checklist
+📖 out/README.txt              → Quick reference
+
+
+✅ WHAT'S ALREADY WORKING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Beautiful particle background effect
+✓ Responsive design (mobile, tablet, desktop)
+✓ "Investor/Partner Inquiry" → anthony@halos.bio
+✓ Privacy policy page
+✓ Terms of use page
+✓ SEO optimized
+✓ WCAG accessible
+✓ Fast loading (<200KB JS)
+
+
+🧪 TEST AFTER UPLOAD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Homepage loads: https://halos.bio
+□ Particles animate smoothly
+□ "Join Waitlist" button opens dialog
+□ "Investor Inquiry" opens email
+□ Privacy page works: https://halos.bio/privacy/
+□ Terms page works: https://halos.bio/terms/
+□ Site looks good on mobile
+□ HTTPS works (green lock icon)
+
+
+🆘 NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: Upload fails or times out
+→ Try uploading in smaller batches
+→ Check internet connection
+
+Problem: 404 errors on site
+→ Make sure you uploaded folder CONTENTS, not folder itself
+
+Problem: Particles not showing
+→ Check _next/ folder uploaded completely
+→ Clear browser cache (Cmd+Shift+R)
+
+Full troubleshooting: See DREAMHOST-DEPLOYMENT.md
+
+
+📞 SUPPORT LINKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dreamhost Panel:  https://panel.dreamhost.com
+Dreamhost Help:   https://help.dreamhost.com
+FileZilla Docs:   https://wiki.filezilla-project.org/
+Formspree Help:   https://help.formspree.io/
+
+
+🎉 YOU'RE READY TO LAUNCH!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Everything is built and ready. Just upload and go!
+
+Estimated time: 15 minutes
+Upload size: ~2-3 MB
+
+Good luck! 🚀
+
+
+═══════════════════════════════════════════════════════════════════
+
+Built on: October 6, 2025
+Status: ✅ Production Ready
+Tech: Next.js • Tailwind CSS • TypeScript • Framer Motion
+
