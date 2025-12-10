@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function PrivacyPage() {
+  // useless comment
   return (
     <main className="min-h-screen bg-black text-white py-16 px-4">
       <div className="container mx-auto max-w-4xl">
