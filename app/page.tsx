@@ -38,14 +38,14 @@ export default function Home() {
               Halos Bio
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl text-neutral-300 max-w-2xl mx-auto">
-              Redefining artificial human serum
+              Pioneering artificial human fetal serum
             </p>
           </div>
 
           {/* Brief Description */}
           <p className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto">
             We&apos;re building the next generation of biotech solutions. 
-            Join us on our journey to transform the plasma space.
+            Join us on our journey to transform the human longevity space.
           </p>
 
           {/* CTAs */}
