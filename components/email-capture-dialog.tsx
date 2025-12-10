@@ -55,21 +55,13 @@ export function EmailCaptureDialog({ open, onOpenChange }: EmailCaptureDialogPro
     setIsSubmitting(true);
 
     try {
-      // Using Formspree for form submission (free tier: 50 submissions/month)
-      // Alternative: Use mailto link or integrate with your email service
-      // To set up: Sign up at formspree.io and replace YOUR_FORM_ID below
-      const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/mrbyloan";
-      
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch("/api/waitlist", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
           email,
           interests: interests.join(", "),
-          timestamp: new Date().toISOString(),
         }),
       });
 
@@ -101,7 +93,7 @@ export function EmailCaptureDialog({ open, onOpenChange }: EmailCaptureDialogPro
             <CheckCircle2 className="h-16 w-16 text-green-500 mb-4" />
             <DialogTitle className="text-2xl mb-2">Thank You!</DialogTitle>
             <DialogDescription>
-              We&apos;ll be in touch with research updates soon.
+              We&apos;ll be in touch with updates soon.
             </DialogDescription>
           </div>
         ) : (
@@ -109,8 +101,8 @@ export function EmailCaptureDialog({ open, onOpenChange }: EmailCaptureDialogPro
             <DialogHeader>
               <DialogTitle>Join the Waitlist</DialogTitle>
               <DialogDescription>
-                Be the first to know when Halos Bio launches. By submitting, you
-                consent to receive research updates and agree to our privacy policy.
+                Be the first to know when Halos Bio launches.
+                By submitting, you consent to receive updates.
               </DialogDescription>
             </DialogHeader>
 

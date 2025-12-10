@@ -64,7 +64,7 @@ export default function Home() {
               asChild
               className="text-base px-8 py-6 border-neutral-700 hover:bg-neutral-900"
             >
-              <a href="mailto:anthony@halos.bio" aria-label="Contact us for investor or partner inquiries">
+              <a href="mailto:eloi@halos.bio" aria-label="Contact us for investor or partner inquiries">
                 <Mail className="mr-2 h-5 w-5" />
                 Investor / Partner Inquiry
               </a>
@@ -128,9 +128,6 @@ export default function Home() {
               </a>
               <a href="/terms" className="hover:text-neutral-300 transition-colors">
                 Terms of Use
-              </a>
-              <a href="mailto:contact@halosbio.com" className="hover:text-neutral-300 transition-colors">
-                Contact
               </a>
             </nav>
           </div>

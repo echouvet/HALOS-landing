@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
         
         <div className="prose prose-invert max-w-none space-y-6 text-neutral-300">
-          <p className="text-sm text-neutral-500">Last updated: {new Date().toLocaleDateString()}</p>
+          {/*<p className="text-sm text-neutral-500">Last updated: {new Date().toLocaleDateString()}</p>*/}
           
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-white">Introduction</h2>
@@ -70,16 +70,6 @@ export default function PrivacyPage() {
               <li>Request deletion of your data</li>
               <li>Opt-out of communications at any time</li>
             </ul>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-white">Contact Us</h2>
-            <p>
-              If you have questions about this Privacy Policy, please contact us at:{" "}
-              <a href="mailto:privacy@halosbio.com" className="text-neutral-100 underline">
-                privacy@halosbio.com
-              </a>
-            </p>
           </section>
         </div>
       </div>
