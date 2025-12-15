@@ -101,7 +101,7 @@ export function EmailCaptureDialog({ open, onOpenChange }: EmailCaptureDialogPro
             <DialogHeader>
               <DialogTitle>Join the Waitlist</DialogTitle>
               <DialogDescription>
-                Be the first to know when Halos Bio launches.
+                Be the first to know when HALOS Bio launches.
                 By submitting, you consent to receive updates.
               </DialogDescription>
             </DialogHeader>
