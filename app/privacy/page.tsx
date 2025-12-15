@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-white">Introduction</h2>
             <p>
-              Halos Bio (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy and is committed to 
+              Halos Bio respects your privacy and is committed to
               protecting your personal information. This Privacy Policy explains how we collect, 
               use, and safeguard your information when you visit our website.
             </p>

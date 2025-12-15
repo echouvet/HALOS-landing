@@ -35,7 +35,7 @@ export default function Home() {
           {/* Logo/Brand Name */}
           <div className="space-y-4">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 animate-fade-in">
-              Halos Bio
+              HALOS Bio
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl text-neutral-300 max-w-2xl mx-auto">
               Pioneering artificial human fetal serum
@@ -95,20 +95,19 @@ export default function Home() {
       {/* Compliance & Disclaimers Section */}
       <section className="py-16 px-4 bg-neutral-950 border-t border-neutral-900">
         <div className="container mx-auto max-w-4xl space-y-6 text-center">
-          <h2 className="text-2xl font-semibold text-neutral-300">Important Information</h2>
+          {/*<h2 className="text-2xl font-semibold text-neutral-300">Important Information</h2>*/}
           <div className="space-y-4 text-sm text-neutral-500">
             <p className="flex items-start justify-center gap-2">
               <ShieldCheck className="h-5 w-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
               <span className="text-left max-w-2xl">
-                <strong className="text-neutral-400">For research use only.</strong> The information provided 
-                is not intended for diagnostic or therapeutic use. Halos Bio products are currently in 
-                research and development.
-              </span>
+                <strong className="text-neutral-400">R&D stage.</strong> All information is exploratory and subject
+                to change. This site does not constitute medical advice, a solicitation for investment, or a promise of
+                product availability.</span>
             </p>
-            <p className="text-neutral-600 max-w-2xl mx-auto">
-              All information is exploratory and subject to change. This site does not constitute 
-              medical advice, a solicitation for investment, or a promise of product availability.
-            </p>
+            {/*<p className="text-neutral-600 max-w-2xl mx-auto">*/}
+            {/*  All information is exploratory and subject to change. This site does not constitute */}
+            {/*  medical advice, a solicitation for investment, or a promise of product availability.*/}
+            {/*</p>*/}
           </div>
         </div>
       </section>
@@ -126,14 +125,14 @@ export default function Home() {
               <a href="/privacy" className="hover:text-neutral-300 transition-colors">
                 Privacy Policy
               </a>
-              <a href="/terms" className="hover:text-neutral-300 transition-colors">
-                Terms of Use
-              </a>
+              {/*<a href="/terms" className="hover:text-neutral-300 transition-colors">*/}
+              {/*  Terms of Use*/}
+              {/*</a>*/}
             </nav>
           </div>
 
           <div className="mt-8 pt-8 border-t border-neutral-900 text-center text-xs text-neutral-600">
-            <p>&copy; {new Date().getFullYear()} Halos Bio. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} HALOS Biosciences, Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>
