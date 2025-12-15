@@ -54,7 +54,7 @@ export default function Home() {
               size="lg"
               onClick={() => setDialogOpen(true)}
               className="text-base px-8 py-6 bg-white text-black hover:bg-neutral-200"
-              aria-label="Join the waitlist to receive updates from Halos Bio"
+              aria-label="Join the waitlist to receive updates from HALOS Bio"
             >
               Join Waitlist
             </Button>
@@ -117,7 +117,7 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
-              <p className="text-xl font-semibold text-neutral-300">Halos Bio</p>
+              <p className="text-xl font-semibold text-neutral-300">HALOS Bio</p>
               <p className="text-sm text-neutral-600 mt-1">Stealth mode</p>
             </div>
 
