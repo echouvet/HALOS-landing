@@ -51,11 +51,40 @@
     --ring: 213 36% 29%;
     --radius: 0.5rem;
   }
+
+  .dark {
+    /* shadcn tokens — dark theme */
+    --background: 214 38% 10%;       /* deep ink */
+    --foreground: 220 27% 92%;
+    --card: 214 36% 13%;
+    --card-foreground: 220 27% 92%;
+    --popover: 214 36% 13%;
+    --popover-foreground: 220 27% 92%;
+    --primary: 232 84% 82%;          /* periwinkle */
+    --primary-foreground: 214 38% 10%;
+    --secondary: 214 30% 18%;
+    --secondary-foreground: 220 27% 92%;
+    --muted: 214 30% 18%;
+    --muted-foreground: 219 14% 65%;
+    --accent: 214 30% 18%;
+    --accent-foreground: 220 27% 92%;
+    --destructive: 4 70% 60%;
+    --destructive-foreground: 220 27% 92%;
+    --border: 214 24% 22%;
+    --input: 214 24% 22%;
+    --ring: 232 84% 82%;
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
   }
   html,
   body {
