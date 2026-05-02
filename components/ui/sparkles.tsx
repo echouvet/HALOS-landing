@@ -15,7 +15,7 @@ type ParticlesProps = {
   minSize?: number;
   maxSize?: number;
   speed?: number;
-  particleColor?: string;
+  particleColor?: string | string[];
   particleDensity?: number;
 };
 export const SparklesCore = (props: ParticlesProps) => {
@@ -77,19 +77,19 @@ export const SparklesCore = (props: ParticlesProps) => {
                   mode: "push",
                 },
                 onHover: {
-                  enable: false,
-                  mode: "repulse",
+                  enable: true,
+                  mode: "attract",
                 },
                 resize: true as any,
               },
               modes: {
-                push: {
-                  quantity: 4,
-                },
-                repulse: {
-                  distance: 200,
-                  duration: 0.4,
-                },
+                push: { quantity: 4 },
+                // repulse: { distance: 120, duration: 0.4, factor: 100, speed: 1, easing: "ease-out-quad" },
+                repulse: { distance: 200, duration: 0.4 },
+                attract: { distance: 250, duration: 0.4, factor: 0.1, speed: 25 },
+                bubble:  { distance: 150, duration: 2, size: 6, opacity: 1 },
+                grab:    { distance: 140, links: { opacity: 0.4 } },
+                slow:    { factor: 3, radius: 200 },
               },
             },
             particles: {
