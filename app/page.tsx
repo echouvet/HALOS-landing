@@ -214,8 +214,8 @@ export default function Home() {
       <hr className="m-0 h-0.5 border-0 bg-halos-gradient" aria-hidden="true" />
       <footer className="bg-white pb-16 pt-12 dark:bg-halos-ink-900">
         <div className="mx-auto max-w-[1280px] px-5 md:px-10">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_1fr_1fr]">
-            <div className="flex items-start gap-4">
+          <div className="grid grid-cols-2 gap-10 md:grid-cols-[2fr_1fr_1fr]">
+            <div className="col-span-2 flex items-start gap-4 md:col-span-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo.svg" alt="HALOS" className="h-9 w-auto flex-shrink-0" />
               <p className="max-w-[280px] text-[12px] leading-[1.5] text-halos-ink-500 dark:text-halos-ink-400">
@@ -225,14 +225,14 @@ export default function Home() {
             </div>
             <div>
               <h5 className="mb-3 text-[11px] font-bold uppercase tracking-[0.12em] text-halos-ink-500 dark:text-halos-ink-400">Company</h5>
-              <ul className="m-0 list-none p-0">
-                <li className="py-1">
-                  <a href="/privacy" className="text-[13px] text-halos-ink no-underline transition-opacity hover:opacity-70 dark:text-halos-ink-100">
+              <ul className="m-0 list-none space-y-1 p-0 leading-tight">
+                <li>
+                  <a href="/privacy" className="text-[13px] leading-tight text-halos-ink no-underline transition-opacity hover:opacity-70 dark:text-halos-ink-100">
                     Privacy policy
                   </a>
                 </li>
-                {/* <li className="py-1">
-                  <a href="/terms" className="text-[13px] text-halos-ink no-underline transition-opacity hover:opacity-70">
+                {/* <li>
+                  <a href="/terms" className="text-[13px] leading-tight text-halos-ink no-underline transition-opacity hover:opacity-70">
                     Terms of use
                   </a>
                 </li> */}
@@ -240,20 +240,20 @@ export default function Home() {
             </div>
             <div>
               <h5 className="mb-3 text-[11px] font-bold uppercase tracking-[0.12em] text-halos-ink-500 dark:text-halos-ink-400">Contact</h5>
-              <ul className="m-0 list-none p-0">
-                <li className="py-1">
+              <ul className="m-0 list-none space-y-1 p-0 leading-tight">
+                <li>
                   <a
                     href="mailto:eloi@halos.bio"
-                    className="text-[13px] text-halos-ink no-underline transition-opacity hover:opacity-70 dark:text-halos-ink-100"
+                    className="text-[13px] leading-tight text-halos-ink no-underline transition-opacity hover:opacity-70 dark:text-halos-ink-100"
                   >
                     eloi@halos.bio
                   </a>
                 </li>
-                <li className="py-1">
+                <li>
                   <button
                     type="button"
                     onClick={() => setDialogOpen(true)}
-                    className="bg-transparent p-0 text-[13px] text-halos-ink transition-opacity hover:opacity-70 dark:text-halos-ink-100"
+                    className="bg-transparent p-0 text-[13px] leading-tight text-halos-ink transition-opacity hover:opacity-70 dark:text-halos-ink-100"
                   >
                     Join waitlist
                   </button>
