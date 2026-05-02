@@ -2,50 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
-  }
+    /* HALOS palette */
+    --halos-ink: #2F4763;
+    --halos-ink-900: #1E2E43;
+    --halos-ink-800: #263A54;
+    --halos-ink-700: #2F4763;
+    --halos-ink-600: #4A5F7A;
+    --halos-ink-500: #6B7E95;
+    --halos-ink-400: #94A3B4;
+    --halos-ink-300: #BAC4D0;
+    --halos-ink-200: #D7DDE6;
+    --halos-ink-100: #EAEEF3;
+    --halos-ink-50: #F4F6F9;
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --halos-periwinkle: #A9B3F6;
+    --halos-lilac: #E1B0EC;
+    --halos-paper: #FFFFFF;
+    --halos-bone: #FAFAFA;
+    --halos-fog: #F4F5F7;
+    --halos-ok: #B5E660;
+    --halos-warn: #F1EC55;
+    --halos-error: #FB8A80;
+
+    --halos-gradient: linear-gradient(90deg, #A9B3F6 0%, #E1B0EC 100%);
+
+    /* shadcn tokens mapped onto HALOS palette (light theme) */
+    --background: 0 0% 100%;
+    --foreground: 213 36% 29%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 36% 29%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 36% 29%;
+    --primary: 213 36% 29%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 27% 96%;
+    --secondary-foreground: 213 36% 29%;
+    --muted: 220 27% 96%;
+    --muted-foreground: 213 16% 50%;
+    --accent: 220 27% 96%;
+    --accent-foreground: 213 36% 29%;
+    --destructive: 4 95% 74%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 219 21% 87%;
+    --input: 219 21% 87%;
+    --ring: 213 36% 29%;
+    --radius: 0.5rem;
   }
 }
 
@@ -53,12 +57,50 @@
   * {
     @apply border-border;
   }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-roboto), "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
-/* Custom styles for Halos Bio landing page */
+/* Hero blob float animations — sourced from reference standalone HTML */
+@keyframes blob-float-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(40px, 30px, 0) scale(1.08);
+  }
+}
+@keyframes blob-float-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-50px, -40px, 0) scale(0.94);
+  }
+}
+@keyframes blob-float-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-30px, 40px, 0) scale(1.05);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -68,4 +110,3 @@
     transition-duration: 0.01ms !important;
   }
 }
-

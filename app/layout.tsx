@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 const title = "Halos Bio | Pioneering Artificial Human Fetal Serum"
 const description = "Halos Bio is redefining the biotech landscape by changing the artificial plasma space."
@@ -41,9 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={roboto.variable}>
+      <body>{children}</body>
     </html>
   );
 }
-
