@@ -29,6 +29,17 @@
 
     --halos-gradient: linear-gradient(90deg, #A9B3F6 0%, #E1B0EC 100%);
 
+    /* Semantic ink tokens — auto-swap under .dark.
+       Use via Tailwind utilities: text-ink, text-ink-muted, text-ink-subtle,
+       text-ink-icon, border-ink-line, bg-canvas. Keeps JSX free of paired
+       `dark:` color overrides. */
+    --ink-primary: #2F4763;  /* halos-ink     */
+    --ink-muted:   #4A5F7A;  /* halos-ink-600 */
+    --ink-subtle:  #6B7E95;  /* halos-ink-500 */
+    --ink-icon:    #94A3B4;  /* halos-ink-400 */
+    --ink-line:    #D7DDE6;  /* halos-ink-200 */
+    --canvas:      #FFFFFF;  /* halos-paper   */
+
     /* shadcn tokens mapped onto HALOS palette (light theme) */
     --background: 0 0% 100%;
     --foreground: 213 36% 29%;
@@ -53,6 +64,14 @@
   }
 
   .dark {
+    /* Semantic ink tokens — dark counterparts */
+    --ink-primary: #EAEEF3;  /* halos-ink-100 */
+    --ink-muted:   #BAC4D0;  /* halos-ink-300 */
+    --ink-subtle:  #94A3B4;  /* halos-ink-400 */
+    --ink-icon:    #6B7E95;  /* halos-ink-500 */
+    --ink-line:    #2F4763;  /* halos-ink-700 */
+    --canvas:      #1E2E43;  /* halos-ink-900 */
+
     /* shadcn tokens — dark theme */
     --background: 214 38% 10%;       /* deep ink */
     --foreground: 220 27% 92%;
@@ -127,6 +146,147 @@
   }
   50% {
     transform: translate3d(-30px, 40px, 0) scale(1.05);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Component recipes — keep page.tsx free of long arbitrary-value chains.
+   All recipes are theme-aware: the `.dark` selector is scoped here so JSX
+   doesn't need paired `dark:` variants.
+
+   Liquid-glass surfaces reference the SVG <filter id="liquid-glass"> defined
+   once at the top of <main> in app/page.tsx — keep that filter mounted.
+---------------------------------------------------------------------------- */
+@layer components {
+  /* Backdrop refraction + blur (two intensities). */
+  .glass-blur {
+    -webkit-backdrop-filter: url(#liquid-glass) blur(4px) saturate(180%);
+    backdrop-filter: url(#liquid-glass) blur(4px) saturate(180%);
+  }
+  .glass-blur-strong {
+    -webkit-backdrop-filter: url(#liquid-glass) blur(8px) saturate(180%);
+    backdrop-filter: url(#liquid-glass) blur(8px) saturate(180%);
+  }
+
+  /* Drop shadow + inset highlight stack used by the eyebrow pill and the
+     secondary action button. */
+  .glass-shadow {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 0 rgba(47, 71, 99, 0.04),
+      0 10px 30px -10px rgba(47, 71, 99, 0.18);
+  }
+  .dark .glass-shadow {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+      0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Same recipe as .glass-shadow but with deeper bottom-inset + lift,
+     used by the primary action button. */
+  .glass-shadow-raised {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.08),
+      0 10px 30px -10px rgba(47, 71, 99, 0.25);
+  }
+  .dark .glass-shadow-raised {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+      0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Slimmer shadow used by the sticky header (no top highlight). */
+  .header-shadow {
+    box-shadow:
+      inset 0 -1px 0 0 rgba(47, 71, 99, 0.05),
+      0 8px 24px -12px rgba(47, 71, 99, 0.15);
+  }
+  .dark .header-shadow {
+    box-shadow:
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.04),
+      0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Hero fade overlay — sparkles dissolve into the page background.
+     Pure CSS so we don't need to branch on `isDark` in JSX. */
+  .hero-fade {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 5%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+  }
+  .dark .hero-fade {
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 46, 67, 0) 0%,
+      rgba(30, 46, 67, 0) 5%,
+      rgba(30, 46, 67, 0.95) 100%
+    );
+  }
+
+  /* Decorative ambient blobs in the hero. Position/size/animation come from
+     utility classes; only the colored radial-gradient lives here. */
+  .blob {
+    border-radius: 9999px;
+    filter: blur(60px);
+    will-change: transform;
+  }
+  .blob--periwinkle {
+    background: radial-gradient(circle, #a9b3f6, transparent 70%);
+  }
+  .blob--lilac {
+    background: radial-gradient(circle, #e1b0ec, transparent 70%);
+  }
+  .blob--mist {
+    background: radial-gradient(circle, #c7cef9, transparent 70%);
+  }
+
+  /* ---------- Typography recipes ----------
+     Authoring these here keeps long arbitrary-value chains
+     (clamp(), tracking-[…], …) out of the JSX. */
+
+  /* Hero headline. Pair with layout utilities (max-width, margin, color). */
+  .h1-display {
+    @apply font-display text-[clamp(44px,6.2vw,96px)] font-light leading-[1.02] tracking-[-0.022em];
+  }
+
+  /* Hero sub-copy / lede paragraph. */
+  .lede {
+    @apply text-[20px] font-light leading-[1.45];
+  }
+
+  /* Tiny uppercase label, used for footer column headings. */
+  .eyebrow-caps {
+    @apply text-[11px] font-bold uppercase tracking-[0.12em];
+  }
+
+  /* ---------- Composite component classes ---------- */
+
+  /* Full eyebrow pill recipe — glass chrome + caps typography. */
+  .eyebrow-pill {
+    @apply glass-blur glass-shadow inline-flex items-center gap-2.5 rounded-full border border-ink-line bg-white/5 px-3.5 py-[7px] font-sans text-[11px] font-bold uppercase leading-none tracking-[0.16em] text-halos-ink-500 dark:bg-halos-ink-100/5 dark:text-halos-ink-300;
+  }
+
+  /* Glass action button — shared chrome.
+     Pair with .btn-glass--primary or .btn-glass--secondary for the tint. */
+  .btn-glass {
+    @apply glass-blur inline-flex items-center gap-2 rounded-full border border-white/45 px-6 py-3 text-[14px] font-bold tracking-[0.01em] text-ink transition-all duration-200 active:scale-[0.98] dark:border-halos-ink-100/20;
+  }
+  .btn-glass--primary {
+    @apply glass-shadow-raised bg-white/5 hover:bg-halos-ink/5 dark:bg-halos-ink-100/5 dark:hover:bg-halos-ink-100/10;
+  }
+  .btn-glass--secondary {
+    @apply glass-shadow bg-halos-ink/10 hover:bg-halos-ink/15 dark:bg-halos-ink-100/10 dark:hover:bg-halos-ink-100/15;
+  }
+
+  /* Compact link used for footer columns (anchors + the button-as-link). */
+  .footer-link {
+    @apply text-[13px] leading-tight text-ink no-underline transition-opacity hover:opacity-70;
   }
 }
 
