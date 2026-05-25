@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-halos-paper py-16 text-halos-ink">
+    <main className="min-h-screen bg-canvas py-16 text-ink">
       <div className="container mx-auto max-w-4xl">
         <Link href="/">
           <Button variant="ghost" className="mb-8">
@@ -11,11 +11,11 @@ export default function TermsPage() {
           </Button>
         </Link>
 
-        <h1 className="mb-8 font-display text-4xl font-light tracking-[-0.015em] text-halos-ink">Terms of Use</h1>
+        <h1 className="mb-8 font-display text-4xl font-light tracking-[-0.015em] text-ink">Terms of Use</h1>
 
-        <div className="max-w-none space-y-6 text-halos-ink-600">
+        <div className="max-w-none space-y-6 text-ink-muted">
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Acceptance of Terms</h2>
+            <h2 className="text-2xl font-bold text-ink">Acceptance of Terms</h2>
             <p>
               By accessing and using this website, you accept and agree to be bound by the terms and provision of
               this agreement.
@@ -23,8 +23,8 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Research Use Only</h2>
-            <p className="font-bold text-halos-ink">
+            <h2 className="text-2xl font-bold text-ink">Research Use Only</h2>
+            <p className="font-bold text-ink">
               IMPORTANT: All information on this website is for research and informational purposes only.
             </p>
             <ul className="list-disc space-y-2 pl-6">
@@ -36,7 +36,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">No Investment Solicitation</h2>
+            <h2 className="text-2xl font-bold text-ink">No Investment Solicitation</h2>
             <p>
               Nothing on this website constitutes a solicitation for investment, an offer to sell securities, or
               financial advice. Any inquiries regarding investment opportunities will be handled in accordance with
@@ -45,7 +45,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Intellectual Property</h2>
+            <h2 className="text-2xl font-bold text-ink">Intellectual Property</h2>
             <p>
               All content on this website, including text, graphics, logos, and software, is the property of Halos
               Bio and is protected by copyright and other intellectual property laws.
@@ -53,7 +53,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Disclaimer of Warranties</h2>
+            <h2 className="text-2xl font-bold text-ink">Disclaimer of Warranties</h2>
             <p>
               This website and all information are provided &quot;as is&quot; without any representations or
               warranties, express or implied. Halos Bio makes no representations or warranties regarding the
@@ -62,7 +62,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold text-ink">Limitation of Liability</h2>
             <p>
               Halos Bio shall not be liable for any damages arising from the use or inability to use this website
               or any information contained herein.
@@ -70,7 +70,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-halos-ink">Changes to Terms</h2>
+            <h2 className="text-2xl font-bold text-ink">Changes to Terms</h2>
             <p>
               We reserve the right to modify these terms at any time. Your continued use of the website following
               any changes indicates your acceptance of the new terms.

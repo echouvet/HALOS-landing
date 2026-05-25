@@ -75,6 +75,18 @@ const config = {
           warn: "#F1EC55",
           error: "#FB8A80",
         },
+        // Semantic, theme-aware ink tokens. Defined as CSS vars in
+        // app/globals.css so they auto-swap under `.dark` — no `dark:` pair
+        // needed in JSX. Use: text-ink, text-ink-muted, text-ink-subtle,
+        // text-ink-icon, border-ink-line, bg-canvas.
+        ink: {
+          DEFAULT: "var(--ink-primary)",
+          muted: "var(--ink-muted)",
+          subtle: "var(--ink-subtle)",
+          icon: "var(--ink-icon)",
+          line: "var(--ink-line)",
+        },
+        canvas: "var(--canvas)",
       },
       backgroundImage: {
         "halos-gradient": "linear-gradient(90deg, #A9B3F6 0%, #E1B0EC 100%)",

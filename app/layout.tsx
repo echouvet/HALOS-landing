@@ -45,8 +45,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Inline pre-hydration script: applies the persisted theme to <html> before
+  // first paint to avoid a flash of the wrong theme. Light is the default —
+  // dark only activates when the user has explicitly opted in via the toggle
+  // (we intentionally ignore `prefers-color-scheme`).
+  const themeBootstrap = `(() => {
+    try {
+      /*// Detect system theme preference
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored ? stored === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+      */
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch {}
+  })();`;
+
   return (
-    <html lang="en" className={roboto.variable}>
+    <html lang="en" className={roboto.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+      </head>
       <body>{children}</body>
     </html>
   );
